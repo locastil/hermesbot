@@ -121,12 +121,12 @@ async def help(ctx):
      
       # Error handling
 @bot.listen()
-      async def on_command_error(ctx, error):
-          if isinstance(error, commands.CommandNotFound):
-              await ctx.send("🤷‍♀️ I don't know that command. Type !help for a list of commands.")
-          elif isinstance(error, commands.MissingRequiredArgument):
+async def on_command_error(ctx, error):
+      if isinstance(error, commands.CommandNotFound):
+            await ctx.send("🤷‍♀️ I don't know that command. Type !help for a list of commands.")
+      elif isinstance(error, commands.MissingRequiredArgument):
               await ctx.send("⚠️ You forgot to provide an argument. Try again!")
-          else:
+      else:
               await ctx.send(f"🩸 Something went wrong: {str(error)}")
      
       # Run the bot
