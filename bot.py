@@ -38,15 +38,15 @@ async def on_ready():
       print(f"🎉 {bot.user.name} is online!")
       await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name="being silly"))
 @bot.command()
-      async def hello(ctx):
-          """Greet the bot with a whimsical response"""
-          responses = [
-              "Hello, my dear! 🌟",
-              "Oh, hello there! 👋",
-              "Greetings, traveler! 🧙‍♂️",
-              "Howdy partner! 🐎",
-              "Salutations! 🪐"
-          await ctx.send(random.choice(responses))
+async def hello(ctx):
+      """Greet the bot with a whimsical response"""
+      responses = [
+      "Hello, my dear! 🌟",
+      "Oh, hello there! 👋",
+      "Greetings, traveler! 🧙‍♂️",
+      "Howdy partner! 🐎",
+      "Salutations! 🪐"
+      await ctx.send(random.choice(responses))
      
       @bot.command()
       async def joke(ctx):
