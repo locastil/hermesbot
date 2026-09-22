@@ -101,7 +101,7 @@ async def echo(ctx, *, text: str):
           await ctx.send(random.choice(responses))
      
 @bot.command()
-      async def help(ctx):
+async def help(ctx):
           """Show available commands with a fun twist"""
           embed = discord.Embed(
               title="🌈 Welcome to the Whimsical Bot!",
