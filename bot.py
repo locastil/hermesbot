@@ -25,12 +25,12 @@ jokes = [
       ]
      
       # Fortune cookies
-      fortunes = [
-          "You will find treasure in unexpected places.",
-          "Today is a good day to wear something colorful.",
-          "Your creativity will shine bright today.",
-          "You'll meet someone who will change your perspective.",
-          "A long journey begins with a single step."
+fortunes = [
+      "You will find treasure in unexpected places.",
+      "Today is a good day to wear something colorful.",
+      "Your creativity will shine bright today.",
+      "You'll meet someone who will change your perspective.",
+      "A long journey begins with a single step."
       ]
      
       @bot.event
