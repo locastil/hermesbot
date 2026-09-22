@@ -54,7 +54,7 @@ async def on_message(message):
                         {"role": "system", "content": SYSTEM_PROMPT},
                         {"role": "user", "content": clean_text or "Hey Hermes!"}
                     ],
-                    model="llama-3.3-70b-versatile",
+                    model="llama3-8b-8192",
                     max_tokens=250,
                 )
                 reply = chat_completion.choices[0].message.content
