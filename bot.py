@@ -34,9 +34,9 @@ fortunes = [
       ]
      
 @bot.event
-      async def on_ready():
-          print(f"🎉 {bot.user.name} is online!")
-          await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name="being silly"))
+async def on_ready():
+      print(f"🎉 {bot.user.name} is online!")
+      await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name="being silly"))
 @bot.command()
       async def hello(ctx):
           """Greet the bot with a whimsical response"""
