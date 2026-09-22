@@ -8,7 +8,7 @@ from groq import AsyncGroq
 import discord
 from discord.ext import commands
 
-# 1. Background web server to keep Render service alive
+# 1. Background web server for Render
 app = Flask('')
 
 @app.route('/')
@@ -33,19 +33,45 @@ SYSTEM_PROMPT = (
     "Keep responses punchy, conversational, and game-savvy. Talk naturally like a community regular on Discord."
 )
 
+chat_model = None
+
 @bot.event
 async def on_ready():
+    global chat_model
     print(f"Logged in as {bot.user}")
+    try:
+        models = await groq_client.models.list()
+        # Filter out Whisper, Orpheus, embeddings, and vision models
+        valid_chat_ids = [
+            m.id for m in models.data 
+            if not any(blocked in m.id.lower() for blocked in ["whisper", "orpheus", "embed", "vision", "guard"])
+        ]
+        print(f"Available Chat Models on your account: {valid_chat_ids}")
+        
+        if valid_chat_ids:
+            # Prefer Llama or Mixtral/Gemma if present, otherwise take the first valid chat model
+            preferred = [m for m in valid_chat_ids if "llama" in m.lower()]
+            chat_model = preferred[0] if preferred else valid_chat_ids[0]
+            print(f"--> Hermes will use model: {chat_model}")
+        else:
+            print("No valid chat models found in account.")
+    except Exception as e:
+        print(f"Error checking models: {e}")
 
 # 3. Conversational AI Listener
 @bot.event
 async def on_message(message):
+    global chat_model
     if message.author == bot.user:
         return
 
     is_mentioned = bot.user in message.mentions or "hermes" in message.content.lower()
 
     if is_mentioned and not message.content.startswith("!"):
+        if not chat_model:
+            await message.reply("⚡ AI model is still initializing. Try again in a few seconds.")
+            return
+
         clean_text = message.clean_content.replace(f"@{bot.user.name}", "").strip()
         
         async with message.channel.typing():
@@ -55,7 +81,7 @@ async def on_message(message):
                         {"role": "system", "content": SYSTEM_PROMPT},
                         {"role": "user", "content": clean_text or "Hey Hermes!"}
                     ],
-                    model="llama-3.1-8b-instant",
+                    model=chat_model,
                     max_tokens=250,
                 )
                 reply = chat_completion.choices[0].message.content
