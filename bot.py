@@ -78,7 +78,7 @@ await ctx.send(f"🧠 Trivia question: {question['question']}")
      
 try:
       answer = await bot.wait_for('message', timeout=15.0, check=lambda m: m.author == ctx.author)
-if answer.content.lower() == question['answer'].lower():
+      if answer.content.lower() == question['answer'].lower():
       await ctx.send("🎉 Correct! You're a trivia master!")
          else:
          await ctx.send(f"❌ Wrong! The correct answer is: {question['answer']}")
