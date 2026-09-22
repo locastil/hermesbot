@@ -40,14 +40,14 @@ async def on_ready():
 @bot.command()
 async def hello(ctx):
       """Greet the bot with a whimsical response"""
-responses = [
+      responses = [
       "Hello, my dear! 🌟",
       "Oh, hello there! 👋",
       "Greetings, traveler! 🧙‍♂️",
       "Howdy partner! 🐎",
       "Salutations! 🪐"
       await ctx.send(random.choice(responses))
-     
+]      
       @bot.command()
       async def joke(ctx):
           """Tell a random joke"""
