@@ -45,7 +45,7 @@ async def hello(ctx):
       "Oh, hello there! 👋",
       "Greetings, traveler! 🧙‍♂️",
       "Howdy partner! 🐎",
-      "Salutations! 🪐"
+      "Salutations! 🪐",
       await ctx.send(random.choice(responses))
 ]      
       @bot.command()
