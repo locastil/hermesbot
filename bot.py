@@ -40,7 +40,7 @@ async def on_ready():
 @bot.command()
 async def hello(ctx):
       """Greet the bot with a whimsical response"""
-      responses = [
+responses = [
       "Hello, my dear! 🌟",
       "Oh, hello there! 👋",
       "Greetings, traveler! 🧙‍♂️",
