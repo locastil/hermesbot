@@ -9,10 +9,10 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
      
-      bot = commands.Bot(
-          command_prefix="!",
-          intents=intents,
-          help_command=None  # We'll create our own help system
+bot = commands.Bot(
+      command_prefix="!",
+      intents=intents,
+      help_command=None  # We'll create our own help system
       )
      
       # Joke collection
