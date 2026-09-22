@@ -33,11 +33,11 @@ fortunes = [
       "A long journey begins with a single step."
       ]
      
-      @bot.event
+@bot.event
       async def on_ready():
           print(f"🎉 {bot.user.name} is online!")
           await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name="being silly"))
-      @bot.command()
+@bot.command()
       async def hello(ctx):
           """Greet the bot with a whimsical response"""
           responses = [
