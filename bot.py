@@ -65,12 +65,12 @@ async def hello(ctx):
       @bot.command()
       async def trivia(ctx):
            """Answer a fun trivia question"""
-          questions = [
-              {"question": "What is the fastest land animal?", "answer": "Cheetah"},
-              {"question": "How many bones do humans have?", "answer": "206"},
-              {"question": "What is the capital of France?", "answer": "Paris"},
-              {"question": "What is 2+2?", "answer": "4"},
-              {"question": "What color is the sky on a clear day?", "answer": "Blue"}
+questions = [
+      {"question": "What is the fastest land animal?", "answer": "Cheetah"},
+      {"question": "How many bones do humans have?", "answer": "206"},
+      {"question": "What is the capital of France?", "answer": "Paris"},
+      {"question": "What is 2+2?", "answer": "4"},
+      {"question": "What color is the sky on a clear day?", "answer": "Blue"}
           ]
      
           question = random.choice(questions)
