@@ -73,7 +73,7 @@ questions = [
       {"question": "What color is the sky on a clear day?", "answer": "Blue"}
           ]
      
- question = random.choice(questions)
+question = random.choice(questions)
           await ctx.send(f"🧠 Trivia question: {question['question']}")
      
           try:
