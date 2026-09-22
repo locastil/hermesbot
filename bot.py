@@ -73,58 +73,5 @@ questions = [
       {"question": "What color is the sky on a clear day?", "answer": "Blue"}
           ]
      
-try:
-      answer = await bot.wait_for('message', timeout=15.0, check=lambda m: m.author == ctx.author)
-      if answer.content.lower() == question['answer'].lower():
-            await ctx.send("🎉 Correct! You're a trivia master!")
-      else:
-            await ctx.send(f"❌ Wrong! The correct answer is: {question['answer']}")
-except asyncio.TimeoutError:
-              await ctx.send(f"⏰ Time's up! The correct answer is: {question['answer']}")
-@bot.command()
-async def echo(ctx, *, text: str):
-          """Repeat back what the user says, but with flair"""
-          if text.lower() in ["quit", "stop", "exit"]:
-              await ctx.send("🛑 Alright, I'll stop talking. But you'll miss my wit!")
-              return
-     
-          responses = [
-              f"Ah, you said: \"{text}\" 🤭",
-              f"Interesting... you mentioned: \"{text}\" 🤔",
-              f"Did you just say: \"{text}\"? Fascinating! 🧠",
-              f"Ah, \"{text}\"... how intriguing! 🌟",
-              f"You utter: \"{text}\"... I shall remember that. 🧾"
-          ]
-          await ctx.send(random.choice(responses))
-     
-@bot.command()
-async def help(ctx):
-          """Show available commands with a fun twist"""
-          embed = discord.Embed(
-              title="🌈 Welcome to the Whimsical Bot!",
-              description="I'm your companion for fun and games! 🎭",
-              color=discord.Color.purple()
-          )
-     
-          embed.add_field(name="!hello", value="Greet the bot with a whimsical response", inline=False)
-          embed.add_field(name="!joke", value="Tell a random joke", inline=False)
-          embed.add_field(name="!fortune", value="Receive a silly fortune cookie", inline=False)
-          embed.add_field(name="!trivia", value="Answer a fun trivia question", inline=False)
-          embed.add_field(name="!echo [text]", value="Repeat back what you say, but with flair", inline=False)
-          embed.add_field(name="!help", value="Show this help message", inline=False)
-     
-          embed.set_footer(text="Have fun! 🎉")
-          await ctx.send(embed=embed)
-     
-      # Error handling
-@bot.listen()
-async def on_command_error(ctx, error):
-      if isinstance(error, commands.CommandNotFound):
-            await ctx.send("🤷‍♀️ I don't know that command. Type !help for a list of commands.")
-      elif isinstance(error, commands.MissingRequiredArgument):
-              await ctx.send("⚠️ You forgot to provide an argument. Try again!")
-      else:
-              await ctx.send(f"🩸 Something went wrong: {str(error)}")
-     
       # Run the bot
       bot.run("YOUR_BOT_TOKEN")
