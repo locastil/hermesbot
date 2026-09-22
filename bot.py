@@ -72,6 +72,3 @@ questions = [
       {"question": "What is 2+2?", "answer": "4"},
       {"question": "What color is the sky on a clear day?", "answer": "Blue"}
           ]
-     
-      # Run the bot
-bot.run("YOUR_BOT_TOKEN")
