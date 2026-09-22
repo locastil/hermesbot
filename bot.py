@@ -1,3 +1,50 @@
+import random
+import aiohttp
+
+# 1. Latency check
+@bot.command(name="ping", help="Checks Hermes' response time to the server.")
+async def ping(ctx):
+    latency = round(bot.latency * 1000)
+    await ctx.send(f"🏓 Pong! Latency: `{latency}ms`")
+
+# 2. Interactive Video Game Trivia
+@bot.command(name="trivia", help="Generates a random gaming trivia question.")
+async def trivia(ctx):
+    url = "https://opentdb.com/api.php?amount=1&category=15&type=multiple"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            data = await resp.json()
+            if not data.get("results"):
+                return await ctx.send("Could not grab trivia right now.")
+            
+            item = data["results"][0]
+            question = item["question"].replace("&quot;", '"').replace("&#039;", "'").replace("&amp;", "&")
+            correct = item["correct_answer"]
+            
+            # Put options together
+            options = item["incorrect_answers"] + [correct]
+            random.shuffle(options)
+            choices = "\n".join([f"• {opt}" for opt in options])
+            
+            await ctx.send(
+                f"🎮 **Gaming Trivia:**\n{question}\n\n**Choices:**\n{choices}\n\n*(Reveal answer: ||{correct}||)*"
+            )
+
+# 3. Squad Drop Picker / Decision Maker
+@bot.command(name="drop", help="Decides a tactical drop point or plan for the squad.")
+async def drop(ctx, *locations):
+    if not locations:
+        locations = ["Military Base", "North Compound", "Hot Drop Airfield", "Loot Outskirts", "Town Center"]
+    choice = random.choice(locations)
+    await ctx.send(f"🎯 **Hermes orders:** Drop at **{choice}**!")
+
+# 4. Dice / Stat Roller
+@bot.command(name="roll", help="Rolls a die between 1 and a given number (e.g. !roll 20).")
+async def roll(ctx, sides: int = 6):
+    result = random.randint(1, max(sides, 1))
+    await ctx.send(f"🎲 Rolled a **{result}** (1-{sides})")
+
+
 import os
 import threading
 from flask import Flask
