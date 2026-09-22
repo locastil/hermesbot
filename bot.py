@@ -84,7 +84,7 @@ try:
             await ctx.send(f"❌ Wrong! The correct answer is: {question['answer']}")
 except asyncio.TimeoutError:
               await ctx.send(f"⏰ Time's up! The correct answer is: {question['answer']}")
-      @bot.command()
+@bot.command()
       async def echo(ctx, *, text: str):
           """Repeat back what the user says, but with flair"""
           if text.lower() in ["quit", "stop", "exit"]:
