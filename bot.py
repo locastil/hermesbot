@@ -1,3 +1,36 @@
+import os
+import threading
+from flask import Flask
+import discord
+from discord.ext import commands
+
+# 1. Dummy web server so Render knows the service is alive
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+def run():
+    port = int(os.environ.get('PORT', 10000))
+    app.run(host='0.0.0.0', port=port)
+
+threading.Thread(target=run, daemon=True).start()
+
+# 2. Discord bot logic
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix="!", intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f"Logged in as {bot.user}")
+
+# (Keep your existing @bot.command trivia/other functions here)
+
+# 3. Connect using the DISCORD_TOKEN you set in Render
+bot.run(os.getenv("DISCORD_TOKEN"))
+
 import discord
 from discord.ext import commands
 import random
