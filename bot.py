@@ -120,7 +120,7 @@ async def help(ctx):
           await ctx.send(embed=embed)
      
       # Error handling
-      @bot.listen()
+@bot.listen()
       async def on_command_error(ctx, error):
           if isinstance(error, commands.CommandNotFound):
               await ctx.send("🤷‍♀️ I don't know that command. Type !help for a list of commands.")
