@@ -16,12 +16,12 @@ bot = commands.Bot(
       )
      
       # Joke collection
-      jokes = [
-          "Why did the scarecrow win an award? Because he was outstanding in his field!",
-          "What do you call fake spaghetti? An impasta!",
-          "Why don't skeletons fight each other? They don't have the guts.",
-          "What do you get when you cross a snowman and a vampire? Frostbite!",
-          "Why did the math book look sad? Because it had too many problems."
+jokes = [
+      "Why did the scarecrow win an award? Because he was outstanding in his field!",
+      "What do you call fake spaghetti? An impasta!",
+      "Why don't skeletons fight each other? They don't have the guts.",
+      "What do you get when you cross a snowman and a vampire? Frostbite!",
+      "Why did the math book look sad? Because it had too many problems."
       ]
      
       # Fortune cookies
