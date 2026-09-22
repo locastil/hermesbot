@@ -74,7 +74,7 @@ questions = [
           ]
      
 question = random.choice(questions)
-      await ctx.send(f"🧠 Trivia question: {question['question']}")
+await ctx.send(f"🧠 Trivia question: {question['question']}")
      
     try:
       answer = await bot.wait_for('message', timeout=15.0, check=lambda m: m.author == ctx.author)
