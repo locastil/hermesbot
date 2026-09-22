@@ -1,9 +1,8 @@
-
 import discord
-      from discord.ext import commands
-       import random
-       import asyncio
-       from datetime import datetime
+from discord.ext import commands
+import random
+import asyncio
+from datetime import datetime
       
        # Set up the bot with intents
        intents = discord.Intents.default()
